@@ -13,37 +13,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.log4j.Log4j2;
-import pl.demo.jdbc.model.AppUser;
 import pl.demo.jdbc.model.Document;
-import pl.demo.jdbc.service.AppUserService;
+import pl.demo.jdbc.service.DocumentService;
 
 @RestController()
-@RequestMapping("/users")
+@RequestMapping("/documents")
 @CrossOrigin(origins = "http://localhost:4200")
 @Log4j2
-public class AppUserController {
+public class DocumentController {
 
 	@Autowired
-	AppUserService appUserService;
+	DocumentService documentService;
 	
 	@PostMapping()
-	public AppUser addUser(@RequestBody AppUser appUser) {
-		return appUserService.addAppUser(appUser);
+	public Document addDocument(@RequestBody Document document) {
+		// log.info( () -> "" + document );
+		return documentService.addDocument(document);
 	}
 	
 	@GetMapping()
-	public List<AppUser> getAll() {
-		return appUserService.getAll();
+	public List<Document> getAll() {
+		return documentService.getAll();
 	}
 	
 	@GetMapping("/{id}")
-	public AppUser getById(@PathVariable Long id) {
-		return appUserService.getById(id);
+	public Document getById(@PathVariable Long id) {
+		return documentService.getById(id);
 	}
 	
-	@GetMapping("/name/{name}")
-	public AppUser getByName(@PathVariable String name) {
-		return appUserService.getByName(name);
+	@GetMapping("/user-id/{id}")
+	public Collection<Document>getByUserId(@PathVariable Long id) {
+		return documentService.getByUserId(id);
 	}
-	
 }

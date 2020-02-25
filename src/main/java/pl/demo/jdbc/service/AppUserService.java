@@ -22,6 +22,10 @@ public class AppUserService {
 		return repository.findAll();
 	}
 	
+	public AppUser getById(Long id) {
+		return repository.findById(id).orElseThrow();
+	}
+	
 	public AppUser getByName(String userName) {
 		return repository.findByName(userName);
 	}

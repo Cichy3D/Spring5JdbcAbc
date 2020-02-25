@@ -29,6 +29,10 @@ public class Principal implements UserDetails {
 		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		return encoder.encode(appUser.getPassword());
 	}
+	
+	public Long getUserId() {
+		return appUser.getId();
+	}
 
 	@Override
 	public String getUsername() {
