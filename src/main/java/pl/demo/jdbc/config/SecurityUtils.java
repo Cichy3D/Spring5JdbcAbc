@@ -1,6 +1,7 @@
 package pl.demo.jdbc.config;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -28,7 +29,10 @@ public class SecurityUtils {
 	}
 	
 	public static boolean hasAuthority(Principal principal, String authority) {
-		return principal.getAuthorities().stream().anyMatch( ga -> ga.getAuthority().equals(authority) );
+		return principal.getAuthorities()
+				.stream()
+				.map(GrantedAuthority::getAuthority)
+				.anyMatch( a -> a.equals(authority) );
 	}
 	
 }

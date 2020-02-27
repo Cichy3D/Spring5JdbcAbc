@@ -19,7 +19,7 @@ import pl.demo.jdbc.service.AppUserService;
 
 @RestController()
 @RequestMapping("/users")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin //(origins = {"http://localhost:4200", "**"})
 @Log4j2
 public class AppUserController {
 

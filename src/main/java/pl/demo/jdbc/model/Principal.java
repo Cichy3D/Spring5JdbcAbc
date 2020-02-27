@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.util.StringUtils;
 
 public class Principal implements UserDetails {
 
@@ -21,6 +22,9 @@ public class Principal implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
+		if( StringUtils.isEmpty(appUser.getRole()) ) {
+			return Collections.emptyList();
+		}
 		return Collections.singleton(() -> "ROLE_"+appUser.getRole());
 	}
 
